@@ -1,4 +1,6 @@
-  Introduction
+**FashionFlowAI**
+
+Introduction
 Introducing "FashionFlowAI": Your Ultimate Conversational Fashion Outfit Generator In the dynamic world of fashion, where style evolves at the speed of a click, Flipkart presents a revolutionary solution that transcends traditional product discovery. Enter "FashionFlowAI," our cutting-edge Conversational Fashion Outfit Generator powered by GenAI. Embracing the transformative capabilities of Generative AI, FashionFlowAI redefines the way users engage with fashion, ushering in a new era of personalized outfit curation through natural, human-like conversations.
 
 
