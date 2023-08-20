@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Product Details</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='details.css') }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <style>
+      .footer {
+    background-color: #1D1E18;
+    color: #fff;
+    text-align: center;
+    padding-top: 1px;
+    padding-bottom: 1px;
+    margin: 0;
+    /* position: fixed; */
+    bottom: 0;
+    /* width: 100%; */
+}
+.footer a{
+  text-decoration: none;
+  color: white;
+}
+.footer a:hover{
+  text-decoration: underline;
+
+}
+        #navbar {
+  background: #2874f0;
+  color: white;
+  padding: 10px 0;
+  box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.2);
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 1000;
+  font-family: 'Raleway', sans-serif;
+}
+
+.navbar-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 20px;
+}
+
+.logo {
+  font-size: 1.8rem;
+  font-weight: bold;
+  font-family: 'Raleway', sans-serif;
+}
+
+.navbar-links {
+  list-style: none;
+  display: flex;
+  align-items: center;
+}
+
+.navbar-link {
+  margin: 0 15px;
+  font-size: 1.1rem;
+  /* text-transform: uppercase; */
+  cursor: pointer;
+  transition: color 0.3s;
+}
+
+.navbar-link:hover {
+  color: #F8E72E;
+}
+table {
+  font-family: arial, sans-serif;
+  border-collapse: collapse;
+  width: 200px;
+}
+
+td, th {
+  border: 1px solid #dddddd;
+  text-align: left;
+  padding: 8px;
+}
+
+tr:nth-child(odd) {
+  background-color: #dddddd;
+}
+
+    </style>
+</head>
+<div id="navbar">
+    <div class="navbar-container">
+        <div class="logo">FashionFlowAI</div>
+        <ul class="navbar-links">
+          <li class="navbar-link" style="color: #F8E72E;font-weight: 500;" onclick="openGenAI()">
+              <i style="font-size:18px" class="fa">&#xf006;</i>
+              AI Fashion Generator</li>
+          <li class="navbar-link">Electronics</li>
+          
+          <li class="navbar-link" id="fashion-link" onclick="openFashion()">Fashion</li>
+      <li class="navbar-link" onclick="openProfile()"><i style='font-size:24px' class='fa'>&#xf007;</i> Profile</li>
+      <li class="navbar-link"><a class="logout-link" href="{{ url_for('cart') }}"><i style='font-size:24px' class='fa'>&#xf07a;</i> Cart</a></li>
+      
+      <li class="navbar-link"><a class="logout-link" href="{{ url_for('logout') }}"><i style="font-size:24px" class="fa">&#xf08b;</i></a></li>
+      </ul>
+</div>
+
+</div>
+<body>
+    <br><br>
+    <br><br>
+    <div class="container">
+        <h2>{{ product['brand'] }}</h2>
+    </div>
+    <div class="container product-details">
+
+        <!-- <h1>Product Details</h1> -->
+        <img class="product-image" src="{{ product.image_url }}" alt="{{ product['product_name'] }}" width="200">
+        <br>
+        <h2>{{ product['product_name'] }}</h2>
+        <p class="product-price">₹{{ product.price }}/-</p>
+        <table>
+            <tr>
+                <td>Ideal for</td>
+                <td>{{ product.ideal_for }}</td>
+            </tr>
+            <tr>
+                <td>Fabric</td>
+                <td>{{ product.fabric }}</td>
+            </tr>
+        </table>
+        <br>
+        <form class="product-actions" action="{{ url_for('product_details', product_id=product_id) }}" method="post">
+            <input type="hidden" name="action" value="add_to_cart">
+            <button type="submit">Add to Cart</button>
+        </form>
+        <br>
+        <form class="product-actions" action="{{ url_for('product_details', product_id=product_id) }}" method="post">
+            <input type="hidden" name="action" value="buy">
+            <button type="submit">Buy</button>
+        </form>
+        <a class="back-link" href="{{ url_for('index') }}">Back to Products</a>
+        
+    </div>
+    <br><br>
+    <script>
+        var startTime = new Date();
+        function openFashion(){
+          window.location.href = "/fashion";
+        }
+        function openProfile(){
+          window.location.href = "/profile";
+        }
+        function openGenAI(){
+          window.location.href = "/";
+        }
+        window.addEventListener('beforeunload', function() {
+            var endTime = new Date();
+            var duration = (endTime - startTime) / 1000;  // Convert to seconds
+            var formData = new FormData();
+            formData.append('product_id', { product_id });
+            formData.append('duration', duration);
+            console.log(duration);
+            fetch('/track_duration', {
+                method: 'POST',
+                body: formData
+            });
+        });
+    </script>
+</body>
+<div class="footer">
+  <p><a href="/doc">Documentation</a> • <a href="/doc#site-map">Site Map</a> • <a href="/doc#terms">Terms and Conditions</a></p>
+</div>
+</html>

@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+  <title>FashionFlowAI Navigation Bar</title>
+  <style>
+     .logout-link{
+    /* display: block; */
+    margin-top: 20px;
+    text-align: center;
+    color: #fff;
+    text-decoration: none;
+}
+.buy-link{
+  /* color: black; */
+  /* text-decoration: none; */
+  padding: 5px;
+  background-color: white;
+  border-radius: 15px;
+}
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  background-color: #f5f5f5;
+  transition: background-color 0.3s ease; /* Add transition */
+}
+  </style>
+</head>
+
+<body>
+  <div id="navbar">
+  <div class="navbar-container">
+    <div class="logo">FashionFlowAI</div>
+    <ul class="navbar-links">
+      <li class="navbar-link">Electronics</li>
+      <li class="navbar-link" id="fashion-link">Fashion</li>
+      <li class="navbar-link"><a class="logout-link" href="/profile"><i style='font-size:24px' class='fa'>&#xf007;</i> Profile</a></li>
+      <li class="navbar-link"><a class="logout-link" href="{{ url_for('cart') }}"><i style='font-size:24px' class='fa'>&#xf07a;</i> Cart</a></li>
+      <li class="navbar-link"><a class="logout-link" href="{{ url_for('logout') }}"><i style="font-size:24px" class="fa">&#xf08b;</i></a></li>
+
+    </ul>
+  </div>
+  
+</div>
+
+  <div class="chat-container">
+    <div class="mode-switch">
+      <button class="mode-button modec active" data-mode="a">Let AI Decide</button>
+      <button class="mode-button modea" data-mode="b">Personalized</button>
+      <button class="mode-button modeb" data-mode="c">Latest Design</button>
+      </div>
+    <div class="chat-box" id="chat-box" data-mode="a"></div>
+    <div class="input-container">
+      <input type="text" id="user-input" placeholder="Type your message..." />
+      <button id="send-button">Send</button>
+    </div>
+  </div>
+  
+  
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <script src="{{ url_for('static', filename='script.js') }}"></script>
+  <script>
+    $(document).ready(function () {
+      let selectedMode = "a"; // Default mode
+
+      $(".mode-button").click(function () {
+        selectedMode = $(this).data("mode");
+        $(".mode-button").removeClass("active");
+        $(this).addClass("active");
+        $("#chat-box").attr("data-mode", selectedMode);
+      });
+
+      $("#fashion-link").click(function(){
+        window.location.href = "/fashion";
+      });
+
+      $("#send-button").click(function () {
+        var userMessage = $("#user-input").val();
+        if (userMessage.trim() === "") return;
+
+        appendMessage(userMessage, "user");
+        showLoadingIndicator();
+
+        $.post("/", { user_message: userMessage, mode: selectedMode }, function (data) {
+          hideLoadingIndicator();
+          appendImg(data.bot_reply, "chatgpt");
+          appendLink();
+        });
+
+        $("#user-input").val("");
+      });
+
+
+      function appendImg(message, sender) {
+    const messageDiv = document.createElement("dizv");
+    const imgTag = document.createElement("img");
+    imgTag.src = message;
+    imgTag.width = 400;
+    messageDiv.appendChild(imgTag);
+    $("#chat-box").append(messageDiv);
+  }
+      
+
+      function appendMessage(message, sender) {
+        console.log("msg");
+        const messageDiv = document.createElement("div");
+        messageDiv.classList.add("chat-message", sender);
+        messageDiv.textContent = message;
+        $("#chat-box").append(messageDiv);
+        $("#chat-box").scrollTop($("#chat-box")[0].scrollHeight);
+      }
+
+      function showLoadingIndicator() {
+        const loadingDiv = document.createElement("div");
+        loadingDiv.classList.add("chat-message", "chatgpt");
+        loadingDiv.innerHTML = `<div class="loading-indicator"></div>`;
+        $("#chat-box").append(loadingDiv);
+        $("#chat-box").scrollTop($("#chat-box")[0].scrollHeight);
+      }
+
+      function hideLoadingIndicator() {
+        const loadingIndicator = document.querySelector(".loading-indicator");
+        if (loadingIndicator) {
+          loadingIndicator.parentNode.remove();
+        }
+      }
+    });
+  </script>
+</body>
+</html>

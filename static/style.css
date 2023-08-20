@@ -1,0 +1,171 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Raleway:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&display=swap');
+
+#navbar {
+  background: #2874f0;
+  color: white;
+  padding: 10px 0;
+  box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.2);
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 1000;
+  font-family: 'Raleway', sans-serif;
+}
+
+.navbar-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 20px;
+}
+
+.logo {
+  font-size: 1.8rem;
+  font-weight: bold;
+  font-family: 'Raleway', sans-serif;
+}
+
+.navbar-links {
+  list-style: none;
+  display: flex;
+  align-items: center;
+}
+
+.navbar-link {
+  margin: 0 15px;
+  font-size: 1.1rem;
+  /* text-transform: uppercase; */
+  cursor: pointer;
+  transition: color 0.3s;
+}
+
+.navbar-link:hover {
+  color: #F8E72E;
+}
+
+
+
+.chat-container {
+  margin-top: 35px;
+  /* border: 1px solid #ccc; */
+  box-shadow: 0 0 10px 3px rgba(0, 0, 0, 0.1);
+  max-width: 800px;
+  width: 100%;
+  background-color: #f5f5f5;
+  border-radius: 5px;
+  display: flex;
+  flex-direction: column;
+  height: 80vh;
+  transition: background-color 0.8s ease; /* Add transition */
+}
+
+.chat-box {
+  flex: 1;
+  overflow-y: auto;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+}
+
+.chat-message {
+  margin: 10px 0;
+  padding: 10px;
+  border-radius: 10px;
+  /* max-width: 80%; */
+  width: fit-content;
+  background-color: #f5f5f5;
+  font-weight: bold;
+}
+
+.user {
+  align-self: flex-end;
+  background-color: #f5f5f5;
+  color: rgb(20, 20, 20);
+  padding: 8px;
+  border-radius: 15px;
+}
+
+.chatgpt {
+  align-self: flex-start;
+  /* background-color: #f0f0f0; */
+  color: #333;
+}
+
+.input-container {
+  display: flex;
+  padding: 10px;
+  border-top: 1px solid #ccc;
+}
+
+input[type="text"] {
+  flex: 1;
+  padding: 5px;
+  border: none;
+  margin-right: 8px;
+  border-radius: 5px;
+  background-color: #f0f0f0;
+}
+
+button {
+  font-family: 'Raleway';
+  padding: 10px 15px;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-weight: 500;
+}
+
+#send-button{
+  background-color: #F23D7E;
+}
+
+.message.bot{
+  /* background-color: #d7d7d7; */
+  color: #007bff;
+  padding: 8px;
+  width: 45%;
+  border-radius: 15px;
+  word-break: break-all;
+}
+
+.mode-switch {
+  display: flex;
+  justify-content: center;
+  margin-top: 15px;
+  margin-bottom: 15px;
+}
+
+.mode-button {
+  padding: 5px 10px;
+  margin: 0 5px;
+  background-color: #fff;
+  color: #333;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.mode-button.active {
+  /* background-color: #007bff; */
+  color: white;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.modea.active{
+  background-color: #007bff;
+}
+
+.modeb.active{
+  background-color: #01B895;
+}
+
+.modec.active{
+  background-color: rgb(242, 61, 126);
+}
+

@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    
+<style>
+  body {
+    font-family: Arial, sans-serif;
+    line-height: 1.6;
+    margin: 0;
+    padding: 0;
+  }
+
+  header {
+    background-color: #1D1E18;
+    color: #fff;
+    text-align: center;
+    padding: 10px;
+    /* margin-top: 90px; */
+  }
+
+  .container {
+    margin: 20px;
+    padding: 20px;
+    border: 1px solid #ccc;
+  }
+
+  h1, h2, h3 {
+    margin-top: 0;
+  }
+
+  h2 {
+    border-bottom: 1px solid #ccc;
+    padding-bottom: 5px;
+  }
+
+  p {
+    margin-bottom: 15px;
+  }
+
+  .code {
+    background-color: #f4f4f4;
+    padding: 10px;
+    border: 1px solid #ddd;
+    overflow: auto;
+  }
+
+  .note {
+    background-color: #f9f9f9;
+    padding: 10px;
+    border-left: 4px solid #888;
+  }
+
+  .link {
+    color: #007bff;
+    text-decoration: none;
+  }
+
+  .link:hover {
+    text-decoration: underline;
+  }
+  #navbar {
+  background: #2874f0;
+  color: white;
+  padding: 10px 0;
+  box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.2);
+  position: relative;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 1000;
+  font-family: 'Raleway', sans-serif;
+}
+
+.navbar-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 20px;
+}
+.logout-link{
+  color: white;
+}
+.logo {
+  font-size: 1.8rem;
+  font-weight: bold;
+  font-family: 'Raleway', sans-serif;
+}
+
+.navbar-links {
+  list-style: none;
+  display: flex;
+  align-items: center;
+}
+
+.navbar-link {
+  margin: 0 15px;
+  font-size: 1.1rem;
+  /* text-transform: uppercase; */
+  cursor: pointer;
+  transition: color 0.3s;
+}
+
+.navbar-link:hover {
+  color: #F8E72E;
+}
+</style>
+<title>FashionFlowAI Documentation</title>
+</head>
+<body>
+  <div id="navbar">
+    <div class="navbar-container">
+      <div class="logo">FashionFlowAI</div>
+      <ul class="navbar-links">
+        <li class="navbar-link" style="color: #F8E72E;font-weight: 500;" id="genai-link">
+            <i style="font-size:18px" class="fa">&#xf006;</i>
+            AI Fashion Generator</li>
+        <li class="navbar-link">Electronics</li>
+        <li class="navbar-link" id="fashion-link">Fashion</li>
+        <li class="navbar-link" onclick="openProfile()"><i style='font-size:24px' class='fa'>&#xf007;</i> Profile</li>
+        <li class="navbar-link"><a class="logout-link" href="{{ url_for('logout') }}"><i style="font-size:24px" class="fa">&#xf08b;</i></a></li>
+  
+      </ul>
+    </div>
+    
+  </div>
+  <header><br>
+    <h1>FashionFlowAI Documentation</h1>
+  </header>
+  <div class="container">
+    <h2>Introduction</h2>
+    <p>Introducing "FashionFlowAI": Your Ultimate Conversational Fashion Outfit Generator
+
+In the dynamic world of fashion, where style evolves at the speed of a click, Flipkart presents a revolutionary solution that transcends traditional product discovery. Enter "FashionFlowAI," our cutting-edge Conversational Fashion Outfit Generator powered by GenAI. Embracing the transformative capabilities of Generative AI, FashionFlowAI redefines the way users engage with fashion, ushering in a new era of personalized outfit curation through natural, human-like conversations.</p>
+    
+<!--     <h2>Usage</h2>
+    <p>To install the software, follow these steps:</p>
+    <div class="code">
+      <code>
+        $ npm install your-package-name
+      </code>
+    </div> -->
+    <br>
+    <h2>Flow of Working</h2>
+    <p><b>1. </b>Once a new account is created, the user will have the option to fill the basic details, which is mandatory for users of FashionFlowAI Generator, and not the ecommerce</p>
+    <p><b>2. </b>It all starts with the usage of the ecommerce portal. This generates a variety of data, starting from the interation of the user with the products, amount of time spent, products added to the cart and much more.</p>
+    <p><b>3. </b>Once the user enters the FashionFlowAI Generator, the user will be given with 3 modes, each having it's own features - Let AI Decide, Personalized and Latest Design</p>
+    <p><b>4. </b>Whenever the user is convinced with the fashion costume design, the user will be listed with the Flipkart Product Link for each of the products, accessories, fashion costumes used in the design. The user may either buy those, or can Create a order of that Fashion Costumer to a Fashion Designer</p>
+    <p>Further info is provided below</p>
+    <ol>
+      <li>Data Collection</li>
+      <li>FashionFlowAI Generator</li>
+      <li>FashionFlowAI Architecture</li>
+    </ol>
+    
+<!--     <h2>Usage</h2>
+    <p>Here's how you can use the software:</p>
+    <div class="code">
+      <code>
+        const software = require('your-package-name');
+        software.init();
+      </code>
+    </div> -->
+    <br>
+    <h2>Data Collection</h2>
+    <p>Data Collection happens in various stages. They are,</p>
+    <ul>
+      <li>Products that are added to the cart</li>
+      <li>Products purchased</li>
+      <li>Products visited or viewed</li>
+      <li>User's details or preferences that are filled in their profile - This data is made to use only after users agree to the Terms, Conditions and Usage Rights</li>
+      <li>User's preferences are collected using Collaborative Filtering</li>
+      <li>User's Social Media Insights - using Meta's Graph API</li>
+    </ul>
+    <br>
+    <h2>FashionFlowAI Generator</h2>
+    <p>It is an integrated system, where the requests from the user is passed to the architecture of models and the image of the fashion design is returned as response. It includes 3 modes, each with it's own individual functionality. They're 'Let AI Decide', 'Personalized', 'Latest Design'.</p>
+    <ul>
+      <li>Let AI Decide - Here, the architecture generates generalized output, with most appropritate and suitable combinations</li>
+<!--   'pattern', 'occasion', 'brand', 'ideal_for', 'fabric', 'color'     -->
+      <li>Personalized - The game changer of this product is here - the input for the model not just includes the request of the user, but also their preferences/favourites for Colour, Brand, Occasion, Fabric, Pattern with Social Media Insights from Graph API. These combinations result in much more personalized outfit to be getting generated  </li>
+<li>Latest Design - Latest fashion trends and new costumes are derived from the internet using web scraping (using BeautifulSoup in Python) and is combined with the user input to generate a better fashion costume</li>
+    </ul>
+    <p>Additional details include,</p>
+    <ul>
+      <li>Each image has a detailed description about it, along with the accessories and fashion costumes involved</li>
+      <li>Each image is accompanied with a 'Buy now' Link, which redirects to the screen of choosing to buy those products or to order to a Fashion Designer</li>
+      <li>Each Prompt-Response Set is a conversational data, that can be used in the further conversations with the model</li>
+      <li>User's Social Media Insights - using Meta's Graph API</li>
+    </ul>
+    <br>
+
+    <h2>FashionFlowAI Architecture</h2>
+    <p>FashionFlowAI is construcuted using two parts, where both of them are open-source and commercially usable models, making it more appropriate for our product. It involves,</p>
+      <ul>
+      <li>
+      A Falcon-7b-instruct, a causal decoder-only model built by TII based on Falcon-7B and finetuned on a mixture of chat/instructions, which is used to construct image prompts from the user input. It relies on the pre trained weights, that makes it suitable for image prompt generation.</li>
+        <li>
+      And Stable Diffusion, a deep learning, text-to-image model, which is again relies on a pre-trained weight of various, vernacular costumes.</li>
+        
+      </ul>
+    <p>The prompt that is generated from Falcon-7b-instruct is then passed to Stable Diffusion, to generate the image</p>
+      
+    <br>
+
+    <h2>Site Map</h2>
+    <p>
+      <ul>
+        <li id="site-map">Configuration<br>
+          - <a href="/profile">Profile</a>
+        </li>
+        <li>Ecommerce <br>
+          - <a href="/fashion">Fashion</a> <br>
+          - <a href="/fashion">Electronics</a> <br>
+          - <a href="/cart">Cart</a> 
+        </li>
+        <li>AI Fashion Generator <br> - <a href="/">FashionFlowAI</a></li>
+      </ul>
+    </p>
+
+    <br>
+
+    <h2>Terms and Conditions</h2>
+    <p style="text-align: justify;" id="terms">
+      Terms and Conditions:
+        Our Terms and Conditions outline the agreement between users and our company regarding the utilization of their shopping cart and purchase history data to enhance their shopping experience. Users' consent is obtained to collect and process this data for tailored shopping recommendations. No sensitive personal information is collected, only cart items and purchase history from our platform. Data security is ensured through protective measures, and third-party sharing is not allowed without explicit consent. Users retain control over their data and can opt-out of personalized suggestions. Account deletion results in data removal. We reserve the right to update these terms, and any changes are effective upon posting on our website. Users who continue to use our services accept these terms.
+    </p>
+    
+<!--     <div class="note">
+      <p><strong>Note:</strong> Make sure to refer to the <a class="link" href="user_guide.pdf">user guide</a> for additional details and examples.</p>
+    </div> -->
+  </div>
+</body>
+</html>

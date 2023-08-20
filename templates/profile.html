@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='products.css') }}"> -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+      <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+      <link rel="stylesheet" href="{{ url_for('static', filename='profile.css') }}"> 
+      <style>
+        .logout-link{
+       /* display: block; */
+       margin-top: 20px;
+       text-align: center;
+       color: #fff;
+       text-decoration: none;
+   }
+   .footer {
+    background-color: #1D1E18;
+    color: #fff;
+    text-align: center;
+    /* padding-top: 1px; */
+    /* padding-bottom: 1px; */
+    margin: 0;
+    /* position: fixed; */
+    bottom: 0;
+    /* width: 100%; */
+}
+.footer a{
+  text-decoration: none;
+  color: white;
+}
+.footer a:hover{
+  text-decoration: underline;
+
+}
+     </style>
+</head>
+    <div id="navbar">
+        <div class="navbar-container">
+            <div class="logo">FashionFlowAI</div>
+            <ul class="navbar-links">
+                <li class="navbar-link" style="color: #F8E72E;font-weight: 500;" id="genai-link">
+                    <i style="font-size:18px" class="fa">&#xf006;</i>
+                    AI Fashion Generator</li>
+                <li class="navbar-link">Electronics</li>
+                <li class="navbar-link" id="fashion-link" onclick="openFashion()">Fashion</li>
+                <!-- <li class="navbar-link" id="profile-link" onclick="openProfile()"><i style='font-size:24px' class='fa'>&#xf007;</i> Profile</li> -->
+            <li class="navbar-link"><a class="logout-link" href="{{ url_for('cart') }}"><i style='font-size:24px' class='fa'>&#xf07a;</i> Cart</a></li>
+          <li class="navbar-link"><a class="logout-link" href="{{ url_for('logout') }}"><i style="font-size:24px" class="fa">&#xf08b;</i></a></li>
+            </ul>
+        </div>
+        </div>
+        
+      </div>
+<body>
+    <div class="profile-card">
+      <br><br><br><br>
+        <div class="profile-header">
+            <img src="{{ url_for('static', filename='user-avatar.jpg') }}" alt="User Avatar">
+            <h1>{{ user_details.username }}</h1>
+            <p>{{ user_details.email }}</p>
+        </div>
+        <div class="profile-details">
+            <h2>Profile Details</h2>
+            <p><strong>Address:</strong> {{ user_details.address }}</p>
+            <p><strong>Phone:</strong> {{ user_details.phone }}</p>
+            <form action="/submit" method="post">
+
+              <h2>Physical Appearance</h2>
+              <label for="gender">Gender:</label>
+              <select name="gender" id="gender" required>
+                <option value="male">Male</option>
+                <option value="female">Female</option>
+                <option value="other">Other</option>
+              </select><br><br>
+              <label for="age">Age:</label>
+              <input type="number" name="age" id="age" required><br><br>
+              <label for="skin-tone">Skin Tone:</label>
+              <select name="skin-tone" id="skin-tone" required>
+                <option value="fair">Fair</option>
+                <option value="medium">Medium</option>
+                <option value="dark">Dark</option>
+              </select><br><br>
+              
+              <label for="region">Country/Region</label>
+              <input type="text" name="region" id="region" required><br><br>
+              
+              <label for="bodyshape">Body Shape:</label>
+              <select name="bodyshape" id="bodyshape" required>
+                <option value="lean">Lean</option>
+                <option value="hourglass">Hourglass</option>
+                <option value="pear">Pear</option>
+                <option value="apple">Apple</option>
+                <option value="rectangle">Rectangle</option>
+                <option value="inverted_triangle">Inverted Triangle</option>
+                <option value="oval">Oval</option>
+                <option value="athletic">Athletic</option>
+                <option value="petite">Petite</option>
+                <option value="tall">Tall</option>
+                <option value="plus_size">Plus Size</option>
+                <option value="slim">Slim</option>
+                <option value="full_figured">Full-Figured</option>
+              </select><br><br>
+
+         
+              <button type="submit">Submit</button>
+            </form>
+        </div>
+    </div>
+    <script>
+        function openFashion(){
+          window.location.href = "/fashion";
+        }
+        function openProfile(){
+          window.location.href = "/profile";
+        }
+    </script>
+</body>
+<!-- <div class="footer">
+  <p><a href="/doc">Documentation</a> • <a href="/doc#site-map">Site Map</a> • <a href="/doc#terms">Terms and Conditions</a></p>
+</div> -->
+</html>

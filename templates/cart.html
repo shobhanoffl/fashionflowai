@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='products.css') }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+      <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+      <style>
+        .logout-link{
+       /* display: block; */
+       margin-top: 20px;
+       text-align: center;
+       color: #fff;
+       text-decoration: none;
+   }
+   .footer {
+    background-color: #1D1E18;
+    color: #fff;
+    text-align: center;
+    padding-top: 1px;
+    padding-bottom: 1px;
+    margin: 0;
+    /* position: fixed; */
+    bottom: 0;
+    position: fixed;
+    width: 100%;
+}
+.footer a{
+  text-decoration: none;
+  color: white;
+}
+.footer a:hover{
+  text-decoration: underline;
+
+}
+   /* body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  background-color: #f5f5f5;
+  transition: background-color 0.3s ease; /* Add transition */
+ 
+*/
+     </style>
+</head>
+<body>
+    <div id="navbar">
+        <div class="navbar-container">
+          <div class="logo">FashionFlowAI</div>
+          <ul class="navbar-links">
+            <li class="navbar-link" style="color: #F8E72E;font-weight: 500;" id="genai-link">
+                <i style="font-size:18px" class="fa">&#xf006;</i>
+                AI Fashion Generator</li>
+            <li class="navbar-link">Electronics</li>
+            <li class="navbar-link" id="fashion-link">Fashion</li>
+            <li class="navbar-link" onclick="openProfile()"><i style='font-size:24px' class='fa'>&#xf007;</i> Profile</li>
+            <li class="navbar-link"><a class="logout-link" href="{{ url_for('logout') }}"><i style="font-size:24px" class="fa">&#xf08b;</i></a></li>
+      
+          </ul>
+        </div>
+        
+      </div>
+
+<!-- ------------ -->
+<body>
+    
+    <div class="products-container">
+<h1 style="margin-top: 120px;">My Cart</h1>
+<br>
+        <!-- {{ user_email }} -->
+        <ul>
+            {% for product in cart_products %}
+            <li>
+                <img src="{{ product.image_url }}" alt="{{ product['product_name'] }}" width="100">
+                <h3>{{ product['product_name'] }}</h3>
+                <p>₹{{ product.price }}</p>
+                <a href="{{ url_for('product_details', product_id=loop.index0) }}">View Details</a>
+                <form action="{{ url_for('product_details', product_id=loop.index0) }}" method="post">
+                    <input type="hidden" name="action" value="add_to_cart">
+                    <button type="submit">Add to Cart</button>
+                </form>
+                <form action="{{ url_for('product_details', product_id=loop.index0) }}" method="post">
+                    <input type="hidden" name="action" value="buy">
+                    <button type="submit">Buy</button>
+                </form>
+            </li>
+            {% endfor %}
+        </ul>
+        <!-- <a href="{{ url_for('logout') }}">Logout</a> -->
+    </div>
+    <!-- <a href="{{ url_for('index') }}">Continue Shopping</a> -->
+</body>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+        function openProfile(){
+          window.location.href = "/profile";
+        }
+    $(document).ready(function () {
+        
+        $("#fashion-link").click(function(){
+        window.location.href = "/fashion";
+      });
+
+        $('#genai-link').click(function(){
+            window.location.href = "/";
+        });
+    });
+</script>
+
+<!-- ------------ -->
+
+    <!-- <h1>Your Cart, {{ user_email }}!</h1>
+    <ul>
+        {% for product in cart_products %}
+        <li>
+            <img src="{{ product.image_url }}" alt="{{ product['product name'] }}" width="100">
+            <h3>{{ product['product_name'] }}</h3>
+            <p>₹{{ product.price }}</p>
+        </li>
+        {% endfor %}
+    </ul>
+    <p>Total Price: ₹{{ total_price }}</p> -->
+    
+</body>
+<div class="footer">
+    <p><a href="/doc">Documentation</a> • <a href="/doc#site-map">Site Map</a> • <a href="/doc#terms">Terms and Conditions</a></p>
+  </div>
+</html>
